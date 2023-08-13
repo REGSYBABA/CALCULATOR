@@ -51,8 +51,8 @@
     background-color: var(--color-secondary);
     /* background-color: var(--color-black); */
     border-radius: 15px;
-    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5)
-    /* max-width: 300px; */
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
+    max-width: 470px;
 }
 
 .input{
@@ -81,4 +81,13 @@ button {
     font-size: 22px;
     color: var(--color-white);
     cursor: pointer; 
+}
+
+.val1{
+    font-size: 30px;
+    letter-spacing: 5px;
+}
+
+.val2{
+    font-size: 42px;
 }
