@@ -1,22 +1,17 @@
+let val1 = document.querySelector('.val1')
+let val2 = document.querySelector('.val2')
+let equalEl = document.querySelector('.equal')
+let clearBtn = document.querySelector('.clear')
+let deleteBtn = document.querySelector('.delete')
+let numEl = document.querySelectorAll('.number')
+let operatorEl = document.querySelectorAll('.operator')
 let currentVal = ''
 let previousVal = ''
 let operator = ''
 let hasDecimal = false
 let result = ''
-let val1 = document.querySelector('.val1')
-let val2 = document.querySelector('.val2')
 
 document.addEventListener('DOMContentLoaded', function() {
-    let numEl = document.querySelectorAll('.number')
-    // window.addEventListener('keydown', function(e){
-    //     const numEl2 = document.querySelector(`button[data-key='${e.code}']`)
-    //     numEl2.click()
-    // })
-    let operatorEl = document.querySelectorAll('.operator')
-    
-    
-    console.log(val2)
-    
     numEl.forEach(number => number.addEventListener('click', function(e){
        if(e.target.textContent === '.' && !hasDecimal){
           hasDecimal = true
@@ -32,17 +27,31 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!currentVal) result
             hasDecimal = false
             if (currentVal && previousVal && operator){
-                // handleOperator(e.target.textContent)
                 calculate()
-            } else {result = (~~currentVal)}
-            
+            } 
+            else {result = Number(currentVal)}
             handleOperator(e.target.textContent)
-            val1.textContent = previousVal 
-            val1.textContent = result + operator
-            // val2.textContent = " " 
-            val2.textContent = result
-            console.log(result)
+            exception()
        })
+    })
+
+    equalEl.addEventListener('click', () => {
+        handleEqual()
+        
+    })
+    
+    clearBtn.addEventListener('click', () => {
+        handleClear()
+    })
+    
+    deleteBtn.addEventListener('click', () => {
+            val2.textContent = val2.textContent.slice(0, -1)
+            currentVal = val2.textContent   
+    })
+
+    window.addEventListener('keydown', function(e){
+        const numEl2 = document.querySelector(`button[data-key='${e.code}']`)
+        numEl2.click()
     })
     
 })
@@ -56,33 +65,54 @@ function handleNum(num){
 function handleOperator(op){
     operator = op
     previousVal = currentVal + operator
+    val1.textContent = result + operator
+    val2.textContent = " "
     currentVal = ''
 }
 
-// function add(a, b) {
-//     return a + b
-// }
-  
-// function substract(a, b) {
-//     return a - b
-// }
-  
-// function multiply(a, b) {
-//     return a * b
-// }
-  
-// function divide(a, b) {
-//     return a / b
-// }
-
 function calculate(){
     if (operator === '+'){
-       result = (~~result) + (~~currentVal)
+       result = Number(result) + Number(currentVal)
     } else if (operator === '-'){
-        result = (~~result) - (~~currentVal)
+        result = Number(result) - Number(currentVal)
     } else if (operator === '*'){
-        result = (~~result) * (~~currentVal)
-    }  else if (operator === '/'){
-        result = (~~result) / (~~currentVal) 
-    }     
+        result = Number(result) * Number(currentVal)
+    } else if (operator === '/'){
+        result = Number(result) / Number(currentVal) 
+        if (Number(currentVal) === 0 && operator === '/'){
+            result = 'Leemao' 
+        }
+    } 
+    
 }
+
+function handleEqual(){
+    if(!currentVal || !previousVal) return
+    hasDecimal = false
+    calculate()
+    val1.textContent += currentVal
+    val2.textContent = result
+    currentVal = result
+    previousVal = ''
+}
+
+function exception(){
+    if (!currentVal && previousVal && operator === '%'){
+        result = Number(result) / 100
+        val2.textContent = result
+        currentVal = result
+        previousVal = ''
+    }
+}
+
+function handleClear(){
+    currentVal = ''
+    previousVal = ''
+    operator = ''
+    hasDecimal = false
+    result = ''
+    val2.textContent = '0'
+    val1.textContent = '0'
+}
+
+
