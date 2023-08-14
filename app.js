@@ -45,13 +45,15 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     
     deleteBtn.addEventListener('click', () => {
+        if (val2.textContent === '0' && val1.textContent === '0') return
             val2.textContent = val2.textContent.slice(0, -1)
-            currentVal = val2.textContent   
+            currentVal = val2.textContent 
     })
 
     window.addEventListener('keydown', function(e){
         const numEl2 = document.querySelector(`button[data-key='${e.code}']`)
         numEl2.click()
+        console.log(e.code)
     })
     
 })
@@ -116,3 +118,8 @@ function handleClear(){
 }
 
 
+const themeBtn = document.querySelector('.theme-btn')
+    themeBtn.addEventListener('click', () => {
+      let element = document.body
+      element.classList.toggle('light-mode')
+    })
