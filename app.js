@@ -5,6 +5,7 @@ let clearBtn = document.querySelector('.clear')
 let deleteBtn = document.querySelector('.delete')
 let numEl = document.querySelectorAll('.number')
 let operatorEl = document.querySelectorAll('.operator')
+const themeBtn = document.querySelector('.theme-btn')
 let currentVal = ''
 let previousVal = ''
 let operator = ''
@@ -32,12 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
             else {result = Number(currentVal)}
             handleOperator(e.target.textContent)
             exception()
+           
        })
     })
 
     equalEl.addEventListener('click', () => {
-        handleEqual()
-        
+        handleEqual()    
     })
     
     clearBtn.addEventListener('click', () => {
@@ -61,7 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function handleNum(num){
     if(currentVal.length <= 13){
         currentVal += num
-    }    
+    }   
+    
 }
 
 function handleOperator(op){
@@ -84,8 +86,8 @@ function calculate(){
         if (Number(currentVal) === 0 && operator === '/'){
             result = 'Leemao' 
         }
-    } 
-    
+    }
+    result = Math.round(result * 1000) / 1000    
 }
 
 function handleEqual(){
@@ -117,9 +119,11 @@ function handleClear(){
     val1.textContent = '0'
 }
 
+// function roundNum(num){
+//     result = Math.round(num * 1000) / 1000
+// }
 
-const themeBtn = document.querySelector('.theme-btn')
-    themeBtn.addEventListener('click', () => {
-      let element = document.body
-      element.classList.toggle('light-mode')
-    })
+themeBtn.addEventListener('click', () => {
+    let element = document.body
+    element.classList.toggle('light-mode')
+})
