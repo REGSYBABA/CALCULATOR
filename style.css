@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Press+Start+2P&display=swap');
+
 *, *::after, *::before{
     padding: 0;
     margin: 0;
@@ -7,7 +9,7 @@
 :root{
     --color-primary: #efa914;
     --color-primary-2: #efa914;
-    --color-secondary: #3a4452;
+    --color-secondary: #efa914;
     --color-white: #ffffff;
     --color-black: #000;
     --color-red-0: #12181b;
@@ -25,9 +27,9 @@
 }
 
 .light-mode{
-    --color-primary: #f8f8f8;
+    --color-primary: none;
     --color-primary-2: #161515;
-    --color-secondary: #F8BD7F;
+    --color-secondary: #ffffff;
     --color-white: #2a2e35;
     --color-black: #000;
     --color-red-0: #e00909;
@@ -85,7 +87,7 @@
 }
 
 .clear, .delete, .percent, .operator{
-    color: var(--color-primary);
+    color: var(--color-secondary);
     border: 1px solid var(--color-primary);
     background-color: var(--color-red-0);
 }
@@ -108,6 +110,7 @@ button {
     color: var(--color-white);
     cursor: pointer; 
     font-family: 'Cursed Timer ULiL';
+    font-family: 'Philosopher', sans-serif;
     transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -122,11 +125,14 @@ button:hover{
     font-size: 30px;
     letter-spacing: 5px;
     font-family: 'Cursed Timer ULiL';
+    margin-bottom: 15px;
+    margin-right: 15px;
 }
 
 .val2{
     font-size: 42px;
     font-family: 'Cursed Timer ULiL';
+    margin-right: 15px;
 }
 
 .theme-btn{
@@ -141,6 +147,54 @@ button:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: var(--br-sm-2);
     transition: all .1s ease-in-out;
-}    
+}
+
+.theme-btn:active{
+    transform: translateY(-5px);
+}
+
+footer{
+    text-align: center;
+    position: absolute;
+    padding: 0;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+footer, .git{
+    cursor: pointer;
+    transition: all .7s ease-in;
+}
+
+.git:hover{
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 600px) {
+    .calculator{
+        max-width: 350px;
+    }
+    .input{
+        padding: 1rem;
+        gap: .7rem;
+    }
+    .theme-btn{
+        top: 2%;
+    }
+    .theme-btn:active{
+        transform: translateY(-2px);
+    }
+    button{
+        box-shadow: 1px 5px 3px rgba(255, 255, 255, 0.1), 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+}
