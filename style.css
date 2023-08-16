@@ -141,7 +141,7 @@ button:hover{
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    background-color: var(--color-grey-4);
+    background-color: var(--color-secondary);
     cursor: pointer;
     position: fixed;
     display: flex;
@@ -174,10 +174,6 @@ footer{
 footer, .git{
     cursor: pointer;
     transition: all .7s ease-in;
-}
-
-.git:hover{
-    transform: scale(1.1);
 }
 
 @media screen and (max-width: 600px) {
