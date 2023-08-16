@@ -52,15 +52,42 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     window.addEventListener('keydown', function(e){
-        const numEl2 = document.querySelector(`button[data-key='${e.code}']`)
-        numEl2.click()
-        console.log(e.code)
+        // const numEl2 = document.querySelector(`button[data-key='${e.code}']`)
+        // numEl2.click()
+        // console.log(e.code)
+        if (
+            e.key === '0' ||
+            e.key === '1' || 
+            e.key === '2' ||
+            e.key === '3' ||
+            e.key === '4' ||
+            e.key === '5' ||
+            e.key === '6' ||
+            e.key === '7' ||
+            e.key === '8' ||
+            e.key === '9' ||
+            e.key === '.'
+        
+        ){
+            clickBtnNum(e.key)
+        } else if (
+            e.key === '*' ||
+            e.key === '-' ||
+            e.key === '+' ||
+            e.key === '/' 
+        ){
+            clickBtnOperation(e.key)
+        } else if( e.key === 'Enter' || '='){
+           clickEqual(e.key)
+        } else if (e.key === 'Delete'){
+           clickDel(e.key)
+        }
     })
     
 })
 
 function handleNum(num){
-    if(currentVal.length <= 13){
+    if(currentVal.length <= 9){
         currentVal += num
     }   
     
@@ -83,11 +110,12 @@ function calculate(){
         result = Number(result) * Number(currentVal)
     } else if (operator === '/'){
         result = Number(result) / Number(currentVal) 
-        if (Number(currentVal) === 0 && operator === '/'){
-            result = 'Leemao' 
-        }
     }
-    result = Math.round(result * 1000) / 1000    
+    result = Math.round(result * 1000) / 1000  
+    if (Number(currentVal) === 0 && operator === '/'){
+        result = 'Leemao' 
+    }
+      
 }
 
 function handleEqual(){
@@ -122,6 +150,30 @@ function handleClear(){
 // function roundNum(num){
 //     result = Math.round(num * 1000) / 1000
 // }
+
+function clickBtnNum(key){
+    numEl.forEach(button => {
+        if (button.textContent === key){
+            button.click()
+        }
+    })
+}
+
+function clickBtnOperation (key){
+    operatorEl.forEach(button => {
+        if (button.textContent === key){
+            button.click()
+        }
+    })
+}
+
+function clickEqual(){
+   equalEl.click()
+}
+
+function clickDel(){
+    deleteBtn.click()
+}
 
 themeBtn.addEventListener('click', () => {
     let element = document.body
